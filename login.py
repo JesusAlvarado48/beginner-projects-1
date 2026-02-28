@@ -37,29 +37,34 @@ print("\nType the credentials to prove your worth.\n")
 username = 'kylie'
 password = 'secretpassword'
 
-# Two user inputs for Username and Password
-username_input = input('Username: ')
-password_input = input('Password: ')
+# login function for more modularity
+def login():
+    # Two user inputs for Username and Password
+    username_input = input('Username: ')
+    password_input = input('Password: ')
+    # if user input (Username) is exact to defined username variable and
+    # if user input (Userpassword) is exact to defined password variable
+    # proced with if statement.
+    if username_input == username and password_input == password:
+        print('Access granted')         # Print shown statements with pauses inbetween
+        print('Please wait')
+        time.sleep(5)                   # Pause program execution for 5 seconds
+        print('Ok... Loading...')
+        time.sleep(1)                   # Pause program execution for 1 second
+        print('...')
+        time.sleep(1)                   # Pause program execution for 1 second
+        print('...')                    # Gain access to "secret mainframe"
+        print('Alright you have security clearance. Pulling up the secret mainframe.')
+    # else if statement for incorrect password input prints Password incorrect.
+    elif username_input == username and password_input != password:
+        print('Password incorrect')
+    # else if statement for incorrect username input prints Username incorrect.
+    elif username_input != username and password_input == password:
+        print('Username incorrect')
+    # else (lastly) let user know username and password are incorrect.
+    else:
+        print('You might wanna check both fields...')
 
-# if user input (Username) is exact to defined username variable and
-# if user input (Userpassword) is exact to defined password variable
-# proced with if statement.
-if username_input == username and password_input == password:
-    print('Access granted')         # Print shown statements with pauses inbetween
-    print('Please wait')
-    time.sleep(5)                   # Pause program execution for 5 seconds
-    print('Ok... Loading...')
-    time.sleep(1)                   # Pause program execution for 1 second
-    print('...')
-    time.sleep(1)                   # Pause program execution for 1 second
-    print('...')                    # Gain access to "secret mainframe"
-    print('Alright you have security clearance. Pulling up the secret mainframe.')
-# else if statement for incorrect password input prints Password incorrect.
-elif username_input == username and password_input != password:
-    print('Password incorrect')
-# else if statement for incorrect username input prints Username incorrect.
-elif username_input != username and password_input == password:
-    print('Username incorrect')
-# else (lastly) let user know username and password are incorrect.
-else:
-    print('You might wanna check both fields...')
+# Execute program
+if __name__ == "__main__":
+    login()
