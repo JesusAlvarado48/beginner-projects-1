@@ -13,6 +13,26 @@ Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5
 # and performance measurements. 
 import time
 
+# Introduction to secret mainframe to identify username and
+# password.
+print("==============================================") 
+print(" WELCOME TO THE ASTRAL MAINFRAME v3.7") 
+print("==============================================") 
+time.sleep(1) 
+print("\nBefore you lies a terminal rumored to guard the") 
+print("ancient secrets of the digital realm. Only those") 
+print("who can decipher the clues may enter.") 
+time.sleep(2) 
+print("\nA whisper echoes from the machine:") 
+print('"The key is hidden in plain sight… if you can') 
+print(' read between the lines, you already know."') 
+time.sleep(3) 
+print("\nA faint note appears on the screen:") 
+print(" - The guardian favors a name that starts with 'k' and ends with 'ylie'.") 
+print(" - The password? Well… some say it's the most *secret* thing of all.") 
+time.sleep(3) 
+print("\nType the credentials to prove your worth.\n")
+
 # Define username and password variables
 username = 'kylie'
 password = 'secretpassword'
