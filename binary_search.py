@@ -24,6 +24,13 @@ import time
 # But we can make this *faster* by leveraging the fact that our array is sorted!
 # Binary search ~ O(log(n)), naive search ~ O(n)
 
+def get_valid_integer(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
 # In these two examples, l is a list in ascending order, and target is something that we're looking for
 # Return -1 if not found
 
@@ -66,26 +73,50 @@ def binary_search(l, target, low=None, high=None):
         return binary_search(l, target, midpoint+1, high)
 
 if __name__=='__main__':
-    # l = [1, 3, 5, 10, 12]
-    # target = 7
-    # print(naive_search(l, target))
-    # print(binary_search(l, target))
+    try:
+        length = 10000
+        # build a sorted list of length 10000
+        sorted_list = sorted(random.sample(range(-3*length, 3*length), length))
+        
+        print("Search conducted in repository: kying18/beginner-projects\n")
+        print("A sorted list of random integers has been generated.")
+        print("You will continue entering numbers until one is found in the list.\n")
+        while True:
+            target = get_valid_integer("Enter a number to search for: ")
+            result = binary_search(sorted_list, target)
 
-    length = 10000
-    # build a sorted list of length 10000
-    sorted_list = set()
-    while len(sorted_list) < length:
-        sorted_list.add(random.randint(-3*length, 3*length))
-    sorted_list = sorted(list(sorted_list))
+            if result != -1:
+                print(f"Target {target} found at index {result}.")
 
-    start = time.time()
-    for target in sorted_list:
-        naive_search(sorted_list, target)
-    end = time.time()
-    print("Naive search time: ", (end - start), "seconds")
+                # Time comparison between naive and binary search
+                start = time.time()
+                naive_search(sorted_list, target)
+                end = time.time()
+                naive_time = end - start
 
-    start = time.time()
-    for target in sorted_list:
-        binary_search(sorted_list, target)
-    end = time.time()
-    print("Binary search time: ", (end - start), "seconds")
+                start = time.time()
+                binary_search(sorted_list, target)
+                end = time.time()
+                binary_time = end - start
+
+                print(f"Naive search time: {naive_time:.8f} seconds")
+                print(f"Binary search time: {binary_time:.8f} seconds")
+                print("Binary search is faster due to its O(log n) complexity.\n")
+            else:
+                print(f"Target {target} not found in the list.")
+
+            # Ask if the user wants to continue comparing searches
+            while True:
+                choice = input("\nWould you like to continue comparing searches? (y/n): ").strip().lower()
+                if choice in ['y', 'yes']:
+                    print("\nContinuing search...\n")
+                    break # exit inner loop, continue outer loop
+                elif choice in ['n', 'no']:
+                    print("\nExiting program. Thank you for using the search comparison tool.")
+                    raise SystemExit
+                else:
+                    print("Invalid input. Please enter 'Y' or 'N'.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
